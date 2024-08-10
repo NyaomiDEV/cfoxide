@@ -38,6 +38,11 @@ impl CF {
         unpacked
     }
 
+    pub fn get_omocodia(&self) -> u8 {
+        let unpacked: u16 = (((self.0[9] as u16) << 8) | self.0[8] as u16) >> 3;
+        unpacked as u8
+    }
+
     pub fn get_name_surname_block(&self) -> String {
         let mut unpacked: u32 = (((self.0[7] as u32) << 24) | ((self.0[6] as u32) << 16) | ((self.0[5] as u32) << 8) | self.0[4] as u32) >> 5;
         let mut str = String::new();

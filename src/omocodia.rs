@@ -43,9 +43,8 @@ pub(crate) fn omocodia_bitmask(s: &str) -> u8 {
 
     chars = chars
         .into_iter()
-        .enumerate()
-        .filter(|&x| *keep.get(x.0).unwrap_or(&false))
-        .map(|x| x.1)
+        .zip(keep)
+        .filter_map(|(c, keep)| if keep { Some(c) } else { None })
         .collect();
 
     for char in chars {
